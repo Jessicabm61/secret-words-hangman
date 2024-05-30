@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Game.css"
 import { useState, useRef } from 'react'
+import Heart from '/src/data/img/Heart.jpg';
 
 const Game = ({ verifyLetter,
   pickageCategory,
