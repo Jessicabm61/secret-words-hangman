@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 
 const Game = ({ verifyLetter,
   pickageCategory,
+  pickageImagem,
   pickageWord,
   guessLetters,
   setGuessLetters,
@@ -29,11 +30,15 @@ const Game = ({ verifyLetter,
     <div className="game">
       <div className="points">
         <span>Pontuação {score}</span>
+        <div className="hearts-container">
+         {Array.from({ length: guess }, (_, index) => (
+          <img key={index} src="src/data/img/Heart.jpg"/>
+         ))}
+       </div>
       </div>
-      <p>Advinhe a palavra: </p>
       <h3 className="tip">
-        Dica sobre a palavra: <span> {pickageCategory}</span>
-        <p>Você ainda tem {guess} tentativas</p>
+        <p>Dica sobre a palavra:</p>
+        <img src={pickageImagem}/>
       </h3>
       <div className="wordContainer">
         {letters.map((letter, indice) => (
@@ -47,7 +52,7 @@ const Game = ({ verifyLetter,
         <p>Tente advinhar uma letra da palavra:</p>
         <form onSubmit={handleLetter}>
           <input type="text" name="letter" maxLength="1" required onChange={(e) => setLetter(e.target.value)} value={letter} ref={letterUseRef}></input>
-          <button>jogar!</button>
+          <button className="btn-jogar">jogar!</button>
         </form>
       </div>
       <div className="wrongLettersContainer">
