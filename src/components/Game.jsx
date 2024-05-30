@@ -28,6 +28,8 @@ const Game = ({ verifyLetter,
   }
   return (
     <div className="game">
+      <div className='game-container'>
+
       <div className="points">
         <span>Pontuação {score}</span>
         <div className="hearts-container">
@@ -35,11 +37,13 @@ const Game = ({ verifyLetter,
           <img key={index} src="src/data/img/Heart.jpg"/>
          ))}
        </div>
-      </div>
-      <h3 className="tip">
+      </div>  
+
+       <div className="tip">
         <p>Dica sobre a palavra:</p>
         <img src={pickageImagem}/>
-      </h3>
+      </div>
+
       <div className="wordContainer">
         {letters.map((letter, indice) => (
           guessLetters.includes(letter) ? (
@@ -48,6 +52,7 @@ const Game = ({ verifyLetter,
             <span className="blankSquare" key={indice}></span>)
         ))}
       </div>
+
       <div className="letterContainer">
         <p>Tente advinhar uma letra da palavra:</p>
         <form onSubmit={handleLetter}>
@@ -55,12 +60,23 @@ const Game = ({ verifyLetter,
           <button className="btn-jogar">jogar!</button>
         </form>
       </div>
+
       <div className="wrongLettersContainer">
         <p>Letras já utilizadas:</p>
             {wrongLetters.map((letter, index) => (
               <span key={index}>{letter}, </span>
             ))}
       </div>
+
+    </div>
+      <div className="personagem">
+      {guess === 6 ? <img src="src/data/img/Sereia1.png" alt="Sereia 1" /> : null}
+      {guess === 5 ? <img src="src/data/img/Sereia2.png" alt="Sereia 2" /> : null}
+      {guess === 4 ? <img src="src/data/img/Sereia3.png" alt="Sereia 2" /> : null}
+      {guess === 3 ? <img src="src/data/img/Sereia4.png" alt="Sereia 2" /> : null}
+      {guess === 2 ? <img src="src/data/img/Sereia5.png" alt="Sereia 2" /> : null}
+      {guess === 1 ? <img src="src/data/img/Sereia6.png" alt="Sereia 2" /> : null}
+       </div>
     </div>
   )
 }
