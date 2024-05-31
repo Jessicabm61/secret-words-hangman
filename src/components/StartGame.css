@@ -1,8 +1,11 @@
-.Start h1 {
-    font-size: 3,5rem;
+.startgame-container{
+padding: 60px;
 }
 
-.Start p {
-    margin-bottom: 2rem;
-    font-size: 1rem;
+.startgame-container p, h1{
+    margin-bottom: 50px;
+}
+
+.btn-container {
+    margin-top: 50px;
 }

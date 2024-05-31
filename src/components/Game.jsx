@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Game.css"
 import { useState, useRef } from 'react'
-import Heart from '/src/data/img/Heart.jpg';
+import HeartImage from '/src/data/img/Heart.jpg';
 
 const Game = ({ verifyLetter,
   pickageCategory,
@@ -35,7 +35,7 @@ const Game = ({ verifyLetter,
         <span>Pontuação {score}</span>
         <div className="hearts-container">
          {Array.from({ length: guess }, (_, index) => (
-          <img key={index} src="/src/data/img/Heart.jpg" alt="Heart" />
+          <img key={index} src={HeartImage} alt="Heart" />
          ))}
        </div>
       </div>  

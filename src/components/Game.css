@@ -48,11 +48,7 @@
     align-items: center; /* Centraliza verticalmente o conteúdo */
 }
 
-p{
-    font-size: 1em;
-    font-family: 'Press Start 2P', cursive;
-    color: #000;
-}
+
 .tip{
     width: 400px;
     padding: 0;
@@ -89,7 +85,7 @@ p{
 
 .letter, .blankSquare{
     font-size: 40px;
-    color: #8483bd;
+    color: orange;
     height: 50px;
     width: 75px;
     border-bottom: 4px solid #444;
@@ -165,6 +161,8 @@ p{
     /* Animation property */
 .btn-jogar {
     animation: wiggle 4s linear infinite;
+    border-radius: 8px; 
+    width: 100px;
   }
   
   /* Keyframes */
@@ -192,25 +190,5 @@ p{
     }
   }
   
-  body {
-    background: #444;
-  }
-  
-  .btn-jogar {
- 
-    
-    height: 4em;
-    width: 7em;
-    
-    background: #444;
-    background: linear-gradient(top, #555, #333);
-    border: none;
-    border-top: 3px solid orange;
-    border-radius: 0 0 0.2em 0.2em;
-    color: #fff;
-    font-family: Helvetica, Arial, Sans-serif;
-    font-size: 1em;
-    transform-origin: 50% 5em;
-  }
     
  

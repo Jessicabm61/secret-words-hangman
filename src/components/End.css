@@ -1,11 +1,29 @@
+.End-Container {
+    padding: 60px;
+}
 h1 {
     font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 50px;
 }
 
 p {
     font-weight: bold;
+    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
+
 p span {
-    color:rgba(133, 116, 20, 0.945)
+    color:orange;
 }
+
+.img-Container {
+    padding: 50px;
+}
+img {
+    width: 200px;
+    height: 200px;
+}
+
+    
+ 
