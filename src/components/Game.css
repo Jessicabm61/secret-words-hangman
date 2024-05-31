@@ -30,18 +30,22 @@
 .points span {
     font-size: 1em;
     padding: 10px;
-    margin-right: 100px;
+    margin-right: 50px;
 }
 
-.points p {
-    font-size: 1em;
-    margin-top: 10px;
+.hearts-container img {
+    width: 25px; /* Largura das imagens */
+    height: 25px; /* Altura das imagens */
+    margin-right: 10px; /* Margem entre as imagens */
 }
 
-.hearts-container img{
-    width: 25x;
-    height: 25px;
-    background-color: white;
+
+.hearts-container .points{
+  /* Remova a largura fixa */
+    /* width: 200px; */
+    display: flex; /* Torna o elemento um container flexível */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
 }
 
 p{

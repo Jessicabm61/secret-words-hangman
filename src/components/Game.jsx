@@ -2,7 +2,6 @@ import React from 'react'
 import "./Game.css"
 import { useState, useRef } from 'react'
 import Heart from '/src/data/img/Heart.jpg';
-import Sereia1 from '/src/assets/Sereia1.png';
 
 const Game = ({ verifyLetter,
   pickageCategory,
@@ -71,14 +70,6 @@ const Game = ({ verifyLetter,
       </div>
 
     </div>
-      <div className="personagem">
-      {guess === 6 ? <img src="src/assets/Sereia1.png" alt="Sereia 1" /> : null}
-      {guess === 5 ? <img src="src/data/img/Sereia2.png" alt="Sereia 2" /> : null}
-      {guess === 4 ? <img src="src/data/img/Sereia3.png" alt="Sereia 2" /> : null}
-      {guess === 3 ? <img src="src/data/img/Sereia4.png" alt="Sereia 2" /> : null}
-      {guess === 2 ? <img src="src/data/img/Sereia5.png" alt="Sereia 2" /> : null}
-      {guess === 1 ? <img src="src/data/img/Sereia6.png" alt="Sereia 2" /> : null}
-       </div>
     </div>
   )
 }
