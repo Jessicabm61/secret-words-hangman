@@ -35,7 +35,7 @@ const Game = ({ verifyLetter,
         <span>Pontuação {score}</span>
         <div className="hearts-container">
          {Array.from({ length: guess }, (_, index) => (
-          <img key={index} src="src/data/img/Heart.jpg"/>
+          <img key={index} src="/src/data/img/Heart.jpg" alt="Heart" />
          ))}
        </div>
       </div>  
