@@ -9,6 +9,7 @@ import wordCategories from './data/Words.js'
 import StartGame from './components/StartGame'
 import Game from './components/Game'
 import End from './components/End'
+import Confetti from 'react-confetti';
 
 
 //Estágios do jogo
@@ -30,6 +31,8 @@ function App() {
   const [pickageImagem, setPickageImagem] = useState('') //Categoria escolhida
   const [pickageWord, setPickageWord] = useState('') //Palavra gerada
   const [letters, setLetters] = useState([]) //Letras da palavra gerada convertida com Split
+  const [showConfetti, setShowConfetti] = useState(false); //Estados para adicionar confetti
+  const [startGameAfterConfetti, setStartGameAfterConfetti] = useState(false);
 
   {/*Array de letras*/}
   const[guessLetters, setGuessLetters] = useState([]) //Letras Corretas
@@ -111,13 +114,25 @@ function App() {
 
     // Verifica se o número de letras adivinhadas corretamente é igual ao número de letras únicas na palavra indicando que completou a palavra e iniciando um novo jogo
     if(guessLetters.length != 0 && guessLetters.length === uniqueLetters.length) {
-      // Atualiza a pontuação do jogador, adicionando 100 pontos à pontuação atual
-      setScore((atualScore) => (atualScore += 100))
-      // Inicia um novo jogo, escolhendo uma nova palavra e categoria
-     startGame()
-    }
+      setShowConfetti(true); // Mostra o efeito de confetes
+      
+      setTimeout (() => {
+        setShowConfetti(false); // Esconde o efeito de confetes (se estiver usando react-confetti)
+      // Inicia um novo jogo após a exibição completa dos confetes
+      setStartGameAfterConfetti(true);
+      }, 3000)
 
-  },[guessLetters, letters, startGame])
+    }
+  },[guessLetters, letters])
+
+  useEffect(() => {
+    if (startGameAfterConfetti) {
+        startGame(); // Inicia um novo jogo após a exibição completa dos confetes
+        // Atualiza a pontuação do jogador, adicionando 100 pontos à pontuação atual
+        setScore((atualScore) => (atualScore += 100))
+        setStartGameAfterConfetti(false); // Reseta o estado para evitar chamadas repetidas
+    }
+}, [startGameAfterConfetti, startGame]);
 
   const retry = () => {
     setGuess(guessesQty)
@@ -125,8 +140,13 @@ function App() {
     setGameStage(stage[0].name)
   }
 
+  const OnChoiceCategory = (choiceCategory) => {
+    setPickageCategory(choiceCategory)
+  }
+
   return (
     <div className="App">
+      {showConfetti && <Confetti />}
       {gameStage === "start" && <StartGame startGame={startGame}/>}
       {gameStage === "game" && <Game verifyLetter={verifyLetter} pickageCategory={pickageCategory} pickageImagem={pickageImagem} pickageWord={pickageWord} guessLetters={guessLetters} wrongLetters={wrongLetters} guess={guess} score={score} letters={letters} setGuessLetters={setGuessLetters}/>}
       {gameStage === "end" && <End retry={retry} score={score} pickageWord={pickageWord}/>}

@@ -3,6 +3,7 @@ import "./Game.css"
 import { useState, useRef } from 'react'
 import HeartImage from '/src/data/img/Heart.jpg';
 
+
 const Game = ({ verifyLetter,
   pickageCategory,
   pickageImagem,

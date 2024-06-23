@@ -12,6 +12,7 @@
   "dependencies": {
     "projecttreeview": "^1.1.0",
     "react": "^18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "responsive": "^2.0.0"

@@ -1,0 +1,20 @@
+/* ComoJogar.css */
+.como-jogar {
+    margin: 30px;
+    display: flex;
+    padding: 0;
+    flex-direction: column; /* empilha os elementos verticalmente */
+    align-items: center; /* centraliza horizontalmente os elementos */
+    text-align: center; /* centraliza o texto dentro do h1 e alinha o parágrafo */
+}
+
+.como-jogar h1 {
+    margin-bottom: 20px; /* espaço extra abaixo do h1 */
+
+}
+
+.como-jogar p {
+    max-width: 900px; /* largura máxima do parágrafo */
+    line-height: 1.6; /* espaçamento entre linhas do parágrafo */
+    text-align: justify; /* justifica o texto dentro do parágrafo */
+}

@@ -7,7 +7,7 @@ const StartGame = ({startGame}) => {
   const navigate = useNavigate()
   return (
     <div className='startgame-container'>
-        <h1>Secret World</h1>
+        <h1>Secret Word</h1>
         <p>Clique no botão abaixo para jogar</p>
         <div className='btn-container'>
         <button className="btn-jogar-iniciar" onClick={() => startGame()}>Começar</button>
