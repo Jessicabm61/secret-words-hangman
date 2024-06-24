@@ -10,12 +10,13 @@ import StartGame from './components/StartGame'
 import Game from './components/Game'
 import End from './components/End'
 import Confetti from 'react-confetti';
-
+import Win from './components/Win'
 
 //Estágios do jogo
 const stage = [{id:1, name: 'start'},
                {id:2, name: 'game'},
-               {id:3, name: 'end'}]
+               {id:3, name: 'end'},
+               {id:4, name: 'win'}]
 
 const guessesQty = 6 // Tentativas
 
@@ -31,6 +32,7 @@ function App() {
   const [pickageImagem, setPickageImagem] = useState('') //Categoria escolhida
   const [pickageWord, setPickageWord] = useState('') //Palavra gerada
   const [letters, setLetters] = useState([]) //Letras da palavra gerada convertida com Split
+  const [chosenWords, setChosenWord] = useState([]) //Array de palavras já utilizadas
   const [showConfetti, setShowConfetti] = useState(false); //Estados para adicionar confetti
   const [startGameAfterConfetti, setStartGameAfterConfetti] = useState(false);
 
@@ -43,37 +45,64 @@ function App() {
   {/*Função que escolhe a palavra e a categoria do arquivo "data"*/}
   const pickWordCategory = () => {
     const categories = Object.keys(wordCategories)
-    const category = categories[Math.floor(Math.random() * Object.keys(categories).length)] 
+    const category = categories[Math.floor(Math.random() * categories.length)];
     const wordsArray = wordCategories[category];
-    const selectedWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-    const word = selectedWord.name
-    const img = selectedWord.imagem
-    console.log(word)
-    console.log(img)
-    return({category, word, img})
+
+    //Para cada palavra de wordsArray eu quero que adicione em availabWord apenas as palavras que não foram escolhidas
+    const availabWords = wordsArray.filter(word => !chosenWords.includes(word.name))
+
+    console.log("availabWords", availabWords)
+    if (availabWords.length > 0) {
+      // Escolher aleatoriamente uma palavra entre as disponíveis
+      const selectedWord = availabWords[Math.floor(Math.random() * availabWords.length)];
+      console.log("selectedWord", selectedWord)
+      const word = selectedWord ? selectedWord.name : '';
+      const img = selectedWord.imagem
+      console.log(word)
+      console.log(img)
+      //Seta a palavra escolhida no array de palavras escolhidas
+      setChosenWord([...chosenWords,selectedWord.name])
+      console.log("Array de palavras escolhidas", chosenWords)
+      return({category, word, img})
+    } else {
+      setGameStage(stage[3].name)
+      console.log("Todas as palavras foram escolhidas ou não há palavras disponíveis");
+      console.log(stage)
+      return null
+    }
   }
 
   const startGame = () =>{
-    
+
     //Função que limpa as palavras e inicia novamente as tentativas.
     clearLeterState()
-    
-    //retorna a nova letra e nova categoria
-    const {word, category, img} = pickWordCategory()
 
-    //Dividir a palavra (word) em letras individuais e armazená-las em uma array.
-    let wordLetters = word.split('')
-    //Converter cada letra da array wordLetters para maiúscula.
-    wordLetters = wordLetters.map((l) => l.toUpperCase())
+    // Tenta escolher uma nova palavra e categoria
+    const result = pickWordCategory();
+    console.log("result", result)
 
-    {/*Seta os estados*/}
-    setPickageCategory(category)
-    setPickageImagem(img)
-    setPickageWord(word)
-    setLetters(wordLetters)
-    
-    setGameStage(stage[1].name)
-    console.log(gameStage)
+    if(result) {
+      //retorna a nova letra e nova categoria
+      const {word, category, img} = result
+
+      //Dividir a palavra (word) em letras individuais e armazená-las em uma array.
+      let wordLetters = word.split('')
+      //Converter cada letra da array wordLetters para maiúscula.
+      wordLetters = wordLetters.map((l) => l.toUpperCase())
+
+      {/*Seta os estados*/}
+      setPickageCategory(category)
+      setPickageImagem(img)
+      setPickageWord(word)
+      setLetters(wordLetters)
+
+      setGameStage(stage[1].name)
+      console.log(gameStage)
+    } else {
+      // Se não houver palavra disponível, o estágio já foi alterado para "win" dentro de pickWordCategory
+      console.log("Jogo terminado com vitória");
+    }
+
   }
 
   const verifyLetter = (letter) => {
@@ -87,7 +116,7 @@ function App() {
       setGuessLetters((actualGuessLetters) => [...actualGuessLetters, normalizeLetter])
     } else {
       setWrongLetters((actualWrongLetters) => [...actualWrongLetters, normalizeLetter]);
-    
+
       setGuess((actualGuess) => (actualGuess - 1))
     }
   }
@@ -104,7 +133,7 @@ function App() {
       clearLeterState();
       setGameStage(stage[2].name)
     }
-    
+
   },[guess])
 
   // useEffect para verificar se o jogador adivinhou todas as letras corretamente e reiniciar o jogo se isso acontecer
@@ -115,7 +144,7 @@ function App() {
     // Verifica se o número de letras adivinhadas corretamente é igual ao número de letras únicas na palavra indicando que completou a palavra e iniciando um novo jogo
     if(guessLetters.length != 0 && guessLetters.length === uniqueLetters.length) {
       setShowConfetti(true); // Mostra o efeito de confetes
-      
+
       setTimeout (() => {
         setShowConfetti(false); // Esconde o efeito de confetes (se estiver usando react-confetti)
       // Inicia um novo jogo após a exibição completa dos confetes
@@ -148,6 +177,7 @@ function App() {
     <div className="App">
       {showConfetti && <Confetti />}
       {gameStage === "start" && <StartGame startGame={startGame}/>}
+      {gameStage === "win" && <Win score={score}/>}
       {gameStage === "game" && <Game verifyLetter={verifyLetter} pickageCategory={pickageCategory} pickageImagem={pickageImagem} pickageWord={pickageWord} guessLetters={guessLetters} wrongLetters={wrongLetters} guess={guess} score={score} letters={letters} setGuessLetters={setGuessLetters}/>}
       {gameStage === "end" && <End retry={retry} score={score} pickageWord={pickageWord}/>}
     </div>
