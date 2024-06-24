@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState, useCallback} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 
 //Importação das categorias
 import wordCategories from './data/Words.js'
@@ -23,6 +23,7 @@ const guessesQty = 6 // Tentativas
 function App() {
 
   const navigate = useNavigate()
+  const location = useLocation();
 
   {/*Estágios do jogo*/}
   const [gameStage, setGameStage] = useState(stage[0].name) //Inicia o jogo setando com start
@@ -44,33 +45,31 @@ function App() {
 
   {/*Função que escolhe a palavra e a categoria do arquivo "data"*/}
   const pickWordCategory = () => {
-    const categories = Object.keys(wordCategories)
-    const category = categories[Math.floor(Math.random() * categories.length)];
+    const categories = Object.keys(wordCategories);
+    const category =
+      pickageCategory || (location.state && location.state.category) || categories[Math.floor(Math.random() * categories.length)];
     const wordsArray = wordCategories[category];
 
-    //Para cada palavra de wordsArray eu quero que adicione em availabWord apenas as palavras que não foram escolhidas
-    const availabWords = wordsArray.filter(word => !chosenWords.includes(word.name))
+    // Para cada palavra de wordsArray, adicionar em availabWord apenas as palavras que não foram escolhidas
+    const availabWords = wordsArray.filter(word => !chosenWords.includes(word.name));
 
-    console.log("availabWords", availabWords)
     if (availabWords.length > 0) {
       // Escolher aleatoriamente uma palavra entre as disponíveis
       const selectedWord = availabWords[Math.floor(Math.random() * availabWords.length)];
-      console.log("selectedWord", selectedWord)
       const word = selectedWord ? selectedWord.name : '';
-      const img = selectedWord.imagem
-      console.log(word)
-      console.log(img)
-      //Seta a palavra escolhida no array de palavras escolhidas
-      setChosenWord([...chosenWords,selectedWord.name])
-      console.log("Array de palavras escolhidas", chosenWords)
-      return({category, word, img})
+      const img = selectedWord.imagem;
+
+      // Setar a palavra escolhida no array de palavras escolhidas
+      setChosenWord([...chosenWords, selectedWord.name]);
+
+      return { category, word, img };
     } else {
-      setGameStage(stage[3].name)
+      setGameStage(stage[3].name);
       console.log("Todas as palavras foram escolhidas ou não há palavras disponíveis");
-      console.log(stage)
-      return null
+      console.log(stage);
+      return null;
     }
-  }
+  };
 
   const startGame = () =>{
 
@@ -170,9 +169,6 @@ function App() {
     setChosenWord([])
   }
 
-  const OnChoiceCategory = (choiceCategory) => {
-    setPickageCategory(choiceCategory)
-  }
 
   return (
     <div className="App">

@@ -1,11 +1,31 @@
-.startgame-container{
-padding: 60px;
+.startgame-container {
+    padding: 5%;
+    text-align: center; /* Centraliza o conteúdo */
 }
 
-.startgame-container p, h1{
-    margin-bottom: 50px;
+.startgame-container h1 {
+    margin-bottom: 2em; /* Espaçamento maior abaixo do título */
+}
+
+.startgame-container p {
+    margin-bottom: 2em; /* Espaçamento maior abaixo dos parágrafos */
 }
 
 .btn-container {
-    margin-top: 50px;
+    margin-top: 2em; /* Espaçamento maior acima do container de botões */
+}
+
+/* Media query para ajustar estilos em telas menores */
+@media (max-width: 768px) {
+    .startgame-container {
+        padding: 10px; /* Reduz o padding para telas menores */
+    }
+
+    .startgame-container h1 {
+        font-size: 1.5em; /* Reduz o tamanho da fonte do título */
+    }
+
+    .startgame-container p {
+        font-size: 1em; /* Reduz o tamanho da fonte dos parágrafos */
+    }
 }

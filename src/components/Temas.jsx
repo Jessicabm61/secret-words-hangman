@@ -1,23 +1,28 @@
-import React from 'react'
-import OnçaImagem from '../data/img/onça.jpg'
-import { Navigate, useNavigate } from 'react-router-dom'
+// Temas.js
 
-const Temas = (onChoiceCategory) => {
+import React from 'react';
+import './Temas.css'; // Importando o arquivo CSS
+import { useNavigate } from 'react-router-dom';
 
-  const navigate = useNavigate()
+const Temas = () => {
+  const navigate = useNavigate();
 
-  const handleImagem = (category) => {
-    onChoiceCategory(category)
-    navigate("/")
+  const handlePalavra = (category) => {
+    navigate('/', { state: { category } });
   }
 
   return (
-    <div>
-        <h1>Temas</h1>
-        <img onClick={() => handleImagem("Animais")} src={OnçaImagem} alt="Onça"/>
-        <button className="btn-jogar-voltar" onClick={() => navigate("/")}>Voltar</button>
+    <div className="temas-container">
+      <h1 className="temas-title">Temas</h1>
+      <div className="temas-palavras">
+        <div className="temas-palavra" onClick={() => handlePalavra("Animais")}>Animais</div>
+        <div className="temas-palavra" onClick={() => handlePalavra("Frutas")}>Frutas</div>
+        <div className="temas-palavra" onClick={() => handlePalavra("Profissoes")}>Profissões</div>
+        <div className="temas-palavra" onClick={() => handlePalavra("Esportes")}>Esportes</div>
+      </div>
+      <button className="btn-jogar-voltar" onClick={() => navigate("/")}>Voltar</button>
     </div>
   )
 }
 
-export default Temas
+export default Temas;

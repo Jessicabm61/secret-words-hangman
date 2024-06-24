@@ -1,0 +1,37 @@
+/* Temas.css */
+
+/* Estilo para o container geral */
+.temas-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+    
+  /* Estilo para o container das palavras */
+  .temas-palavras {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que as palavras quebrem para a próxima linha se necessário */
+    margin-bottom: 30px;
+  }
+  
+  /* Estilo para cada palavra */
+  .temas-palavra {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive; /* Fonte estilo cartoon */
+    color:  #e67643; /* Cor laranja */
+    margin: 10px;
+    padding: 12px 24px;
+    border-radius: 20px;
+    background-color: #ffc107; /* Cor de fundo amarelo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  /* Efeito hover */
+  .temas-palavra:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+ 
