@@ -167,6 +167,7 @@ function App() {
     setGuess(guessesQty)
     setScore(0)
     setGameStage(stage[0].name)
+    setChosenWord([])
   }
 
   const OnChoiceCategory = (choiceCategory) => {
@@ -177,7 +178,7 @@ function App() {
     <div className="App">
       {showConfetti && <Confetti />}
       {gameStage === "start" && <StartGame startGame={startGame}/>}
-      {gameStage === "win" && <Win score={score}/>}
+      {gameStage === "win" && <Win score={score} retry={retry}/>}
       {gameStage === "game" && <Game verifyLetter={verifyLetter} pickageCategory={pickageCategory} pickageImagem={pickageImagem} pickageWord={pickageWord} guessLetters={guessLetters} wrongLetters={wrongLetters} guess={guess} score={score} letters={letters} setGuessLetters={setGuessLetters}/>}
       {gameStage === "end" && <End retry={retry} score={score} pickageWord={pickageWord}/>}
     </div>

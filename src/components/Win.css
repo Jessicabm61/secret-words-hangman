@@ -1,0 +1,29 @@
+.Win-Container {
+    padding: 60px;
+}
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+p {
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-bottom: 50px;
+}
+
+p span {
+    color:orange;
+}
+
+.img-Container {
+    padding: 50px;
+}
+img {
+    width: 150px;
+    height: 150px;
+    margin-right: 45px;
+}
+
+    

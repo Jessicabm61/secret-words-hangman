@@ -1,13 +1,17 @@
 import React from 'react'
+import "./Win.css"
 import {useNavigate} from 'react-router-dom'
-const Win = () => {
+import TrofeuImage from '/src/data/img/Trofeu.png';
+const Win = ({score,retry}) => {
   const navigate = useNavigate()
   return (
-    <div>
-        <h1>Você venceu</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis a facere, delectus repellendus dolorum quisquam, tempore esse earum fuga, minima rerum modi! Perspiciatis quam sequi cupiditate quo odit, vero nesciunt!
-        </p>
-        <button className="btn-jogar-voltar" onClick={() => navigate("/")}>Voltar</button>
+    <div className='Win-Container'>
+        <p>Você venceu</p>
+        <p>Parabéns, a sua pontuação foi: <span>{score}</span></p>
+        <button onClick={retry}>Resetar jogo</button>
+        <div className='img-Container'>
+        <img src={TrofeuImage} alt="TrufeuImage"></img>
+        </div>
     </div>
   )
 }
